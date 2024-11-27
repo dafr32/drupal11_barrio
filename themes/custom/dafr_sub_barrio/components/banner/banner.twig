@@ -1,0 +1,20 @@
+{% set random_id = random() %}
+
+<div {{ attributes }}>
+	<div id="banner-{{random_id}}" class="dafr__Banner" style="height:{{height}}">
+		<div class="dafr__banner-content">
+			<div class="dafr__banner-container {{container}} d-flex align-items-{{content_valign}} justify-content-{{content_align}}">
+				<div class="content-inner" style="color:{{text_color}}; max-width:{{width}}; text-align:{{content_align}}">
+					<h4 class="sub-title">{{subtitle}}</h4>
+					<h1 class="title" style="color:{{text_color}} !important" ><span>{{span_title}}</span><br> {{ title }}</h1>
+					<div class="content">
+						{% block content %}{% endblock %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dafr__banner-bg {{parallax}}" data-rellax-speed="-3" data-rellax-percentage="0.5" >
+			{% block image %}{% endblock %}
+		</div>
+	</div>
+</div>

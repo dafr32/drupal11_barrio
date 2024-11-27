@@ -1,0 +1,87 @@
+
+{% set sidebar_first_exists = page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+{% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
+
+
+{% set margin_top = "107px" %}
+
+{% set wrapper_margin_top = "top:0px" %}
+{% if menu_pos == 'fixed-top' %}
+  {% if not page.breadcrumb %}
+      {% set wrapper_margin_top = "padding-top:" ~ margin_top ~ ";" %}
+  {% elseif (front_page) %}
+      {% set wrapper_margin_top = "padding-top:" ~ margin_top ~ ";" %}    
+  {% endif %} 
+{% endif %}
+
+<div id="page-wrapper">
+  <div id="page">
+    
+    {% include header_skin %}
+  
+    {% if page.highlighted %}
+      <div class="highlighted">
+        <aside class="{{ container }} section clearfix" role="complementary">
+          {{ page.highlighted }}
+        </aside>
+      </div>
+    {% endif %}
+    {% if page.featured_top %}
+      {% block featured %}
+        <div class="featured-top">
+          <aside class="featured-top__inner section {{ container }} clearfix" role="complementary">
+            {{ page.featured_top }}
+          </aside>
+        </div>
+      {% endblock %}
+    {% endif %}
+
+    <div id="main-wrapper" class="layout-main-wrapper clearfix" style="{{wrapper_margin_top}}">
+      {% block content %}        
+        {% if container_main %}
+            <div id="main" class="{{ container_main }}">
+        {% else %}
+            <div id="main" class="{{ container }}">
+        {% endif %}
+              <div class="row row-offcanvas row-offcanvas-left clearfix">
+                  <main{{ content_attributes }}>
+                    <section class="section">
+                      <a href="#main-content" id="main-content" tabindex="-1"></a>
+                      {{ page.content }}
+                    </section>
+                  </main>
+                {% if sidebar_first_exists %}
+                  <div{{ sidebar_first_attributes }}>
+                    <aside class="section" role="complementary">
+                      {{ page.sidebar_first }}
+                    </aside>
+                  </div>
+                {% endif %}
+                {% if sidebar_second_exists %}
+                  <div{{ sidebar_second_attributes }}>
+                    <aside class="section" role="complementary">
+                      {{ page.sidebar_second }}
+                    </aside>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+      {% endblock %}
+    </div>
+   
+    {% if page.featured_bottom %}
+      <div class="featured-bottom">
+        <aside class="{{ container }} clearfix" role="complementary">
+          {{ page.featured_bottom }}        
+        </aside>
+      </div>
+    {% endif %}
+
+    {% if not dafr_footer or dafr_footer == '' or dafr_footer != 'disable' %}
+      <footer class="site-footer">
+        {% include '@dafr_sub_barrio/page/footer.html.twig' %}
+      </footer>
+    {% endif %}
+
+  </div>
+</div>

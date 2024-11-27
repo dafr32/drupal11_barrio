@@ -1,0 +1,48 @@
+/* ----------------------------------------------------------  */
+/* MENU STICKY */
+/* ----------------------------------------------------------  */
+#header {
+    width: 100%;
+    height: 107px !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: left;
+    background-color: #222;   
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    z-index: 100;    
+    -webkit-transition: height 0.5s cubic-bezier(0.000, 0.000, 0.580, 1.000);
+    -moz-transition: height 0.5s cubic-bezier(0.000, 0.000, 0.580, 1.000);
+    -o-transition: height 0.5s cubic-bezier(0.000, 0.000, 0.580, 1.000);
+    -ms-transition: height 0.5s cubic-bezier(0.000, 0.000, 0.580, 1.000);
+    transition: all 0.5s cubic-bezier(0.000, 0.000, 0.580, 1.000);    
+    
+
+}
+
+#header.hide-up {
+    transform: translateY(-100%);
+}
+
+.stick-fixed {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+}
+
+#header.scroll-up {
+    background-color: rgba(10, 10, 10, .65);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+#header.top {
+    background-color: #000;
+}
+
+
+#header.transparent {
+    /* background: transparent !important; */
+}
